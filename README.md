@@ -7,17 +7,17 @@
 
 * Shopper
 
-* Delivery_people
+* Delivery
 
 * Market
 
 * Supports
 
-* Requests
+* Order
 
 * Products
 
-* Chests
+* OrderItem
 
 * Addresses
 
@@ -25,9 +25,7 @@
 
 * Coupons
 
-* Pantrys
-
-* Vehicles 
+* Vehicles
 
 ## Ações a fazer
 

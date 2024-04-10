@@ -39,7 +39,7 @@
     - SELFIE blob! *
     - PROFILE blob! *
 
-* Delivery_people
+* Delivery
     - USER_ID INT FK USERS column ID
     - ADDRESS_STREET string(30) ✔
     - ADDRESS_NUMBER int ✔
@@ -70,17 +70,17 @@
     - BANNER blob! *
     - CATEGORY json
 
-* Supports ✔
+* Supports
     - USER_ID INT FK USERS column ID
     - PROFILE blob! *
 
-* Requests
+* Order
     - ID int PK
-    - STATUS string(50)
+    - STATUS OrderStatus
     - CUSTOMER_ID int FK CUSTOMERS column ID
     - SHOPPER_ID FK SHOPPERS column ID
     - DELIVERYMAN_ID FK DELIVERY_PEOPLE column ID
-    - CHEST
+    - ITEMS Set<OrderItem> 
     - PAYMENT
     - COUPON
     - CUSTOMER_OBSERVATION
@@ -95,11 +95,13 @@
     - CATEGORY string(20)
     - UNIT string(20)
 
-* Chests
-    - PRODUCT json[PRODUCT_ID, QUANTITY]
-    - AMOUNT float(8,2)
+* OrderItem
+    - ORDER
+    - PRODUCT
+    - QUANTITY int
+    - PRICE double
 
-* Addresses ✔
+* Addresses
     - ID int PK
     - USER_ID int FK USERS column ID
     - STREET string(30)
@@ -122,10 +124,7 @@
     - CODE int PK
     - VALUE int
 
-* Pantrys
-    - PRODUCT json[PRODUCT_ID,QUANTITY]
-
-* Vehicles ✔
+* Vehicles
     - DELIVERYMAN_ID int FK DELIVERY_PEOPLE column ID
     - MODEL string(30)
     - YEAR int
