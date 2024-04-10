@@ -10,43 +10,12 @@
 
 * Customer
     - USER_ID int FK USERS column ID
-    - ADDRESS_STREET string(30)
-    - ADDRESS_NUMBER int
-    - ADDRESS_COMPLEMENT string(50)
-    - ADDRESS_DISTRICT string(40)
-    - ADDRESS_CITY string(30)
-    - ADDRESS_STATE string(30)
-    - CARD int FK PAYMENTS column ID *
-    - COUPON int FK COUPONS column ID *
-    - PROFILE blob! *
-
-* Shopper
-    - USER_ID INT FK USERS column ID
-    - ADDRESS_STREET string(30)
-    - ADDRESS_NUMBER int
-    - ADDRESS_COMPLEMENT string(50)
-    - ADDRESS_DISTRICT string(40)
-    - ADDRESS_CITY string(30)
-    - ADDRESS_STATE string(30)
-    - CPF int
-    - FINANCIAL_NAME string(50)
-    - BANK string(30)
-    - BANK_AGENCY int
-    - BANK_ACCOUNT int
-    - MARKET_ID int FK MARKETS column ID *
-    - BALANCE float(8,2)
-    - DOCUMENT blob! *
-    - SELFIE blob! *
+    - ADDRESSES Set<Address> 
+    - CARDS Set<Card> int FK PAYMENTS column ID *
     - PROFILE blob! *
 
 * Delivery
     - USER_ID INT FK USERS column ID
-    - ADDRESS_STREET string(30) ✔
-    - ADDRESS_NUMBER int ✔
-    - ADDRESS_COMPLEMENT string(50) ✔
-    - ADDRESS_DISTRICT string(40) ✔
-    - ADDRESS_CITY string(30) ✔
-    - ADDRESS_STATE string(30) ✔
     - CPF int ✔
     - FINANCIAL_NAME string(50) ✔
     - BANK string(30) ✔
@@ -61,16 +30,12 @@
 * Market
     - ID int PK
     - NAME string(50)
-    - ADDRESS_STREET string(30)
-    - ADDRESS_NUMBER int
-    - ADDRESS_COMPLEMENT string(50)
-    - ADDRESS_DISTRICT string(40)
-    - ADDRESS_CITY string(30)
-    - ADDRESS_STATE string(30)
+    - PRODUCTS Set<Product>
+    - ADDRESS
     - BANNER blob! *
     - CATEGORY json
 
-* Supports
+* Support
     - USER_ID INT FK USERS column ID
     - PROFILE blob! *
 
@@ -86,7 +51,7 @@
     - CUSTOMER_OBSERVATION
     - SHOPPER_OBSERVATION
 
-* Products
+* Product
     - ID int PK
     - IMAGE blob!*
     - NAME string(30)
@@ -101,9 +66,10 @@
     - QUANTITY int
     - PRICE double
 
-* Addresses
+* Address
     - ID int PK
-    - USER_ID int FK USERS column ID
+    - USER
+    - POSTAL_CODE int
     - STREET string(30)
     - NUMBER int
     - COMPLEMENT string(50)
@@ -111,18 +77,14 @@
     - CITY string(30)
     - STATE string(30)
 
-* Payments
+* Card
     - ID int PK
     - NUMBER int
     - NAME string
     - CPF int
     - CVV int
-    - VALIDITY date(MM/YY)
+    - VALIDITY date(MM/yy)
     - CUSTOMER_ID int FK CUSTOMERS column ID
-
-* Coupons
-    - CODE int PK
-    - VALUE int
 
 * Vehicles
     - DELIVERYMAN_ID int FK DELIVERY_PEOPLE column ID

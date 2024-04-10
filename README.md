@@ -5,27 +5,23 @@
 
 * Customer
 
-* Shopper
-
 * Delivery
 
 * Market
 
-* Supports
+* Support
 
 * Order
 
-* Products
+* Product
 
 * OrderItem
 
-* Addresses
+* Address
 
-* Payments
+* Card
 
-* Coupons
-
-* Vehicles
+* Vehicle
 
 ## Ações a fazer
 

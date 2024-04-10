@@ -1,11 +1,10 @@
 package com.yzak.spring_buy.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.yzak.spring_buy.entities.enums.UserRole;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,10 +17,15 @@ public class User implements Serializable {
     private String email;
     private String phone;
     private String password;
+    private Integer role;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "client")
-    private List<Order> orders = new ArrayList<>();
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Customer customer;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Market market;
 
     public User(){}
 
@@ -39,10 +43,6 @@ public class User implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public List<Order> getOrders() {
-        return orders;
     }
 
     public String getName() {
@@ -75,6 +75,14 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public UserRole getRole() {
+        return UserRole.valueOf(role);
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role.getCode();
     }
 
     @Override
