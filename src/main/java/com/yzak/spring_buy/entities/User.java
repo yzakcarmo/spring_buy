@@ -5,6 +5,8 @@ import com.yzak.spring_buy.entities.enums.UserRole;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -20,12 +22,8 @@ public class User implements Serializable {
     private Integer role;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Customer customer;
-
-    @JsonIgnore
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Market market;
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
 
     public User(){}
 
@@ -43,6 +41,10 @@ public class User implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 
     public String getName() {
@@ -81,8 +83,8 @@ public class User implements Serializable {
         return UserRole.valueOf(role);
     }
 
-    public void setRole(UserRole role) {
-        this.role = role.getCode();
+    public void setRole(Integer role) {
+        this.role = role;
     }
 
     @Override

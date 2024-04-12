@@ -33,7 +33,7 @@ public class CustomerResource {
     public ResponseEntity<Customer> insert(@RequestBody Customer obj) {
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(obj.getId()).toUri();
+                .buildAndExpand(obj.getUser().getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
     }
 

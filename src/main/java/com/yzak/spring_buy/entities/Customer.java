@@ -18,14 +18,12 @@ public class Customer{
     @MapsId
     private User user;
 
-    private final Integer role = UserRole.CUSTOMER.getCode();
-
     public Customer(){}
 
     public Customer(User user, LocalDate birthDate) {
         this.user = user;
         this.birthDate = birthDate;
-        user.setRole(UserRole.CUSTOMER);
+        user.setRole(UserRole.CUSTOMER.getCode());
     }
 
     public LocalDate getBirthDate() {
@@ -38,9 +36,5 @@ public class Customer{
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
-    }
-
-    public UserRole getRole() {
-        return UserRole.valueOf(role);
     }
 }
