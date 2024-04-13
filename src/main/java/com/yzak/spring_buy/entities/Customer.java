@@ -25,9 +25,9 @@ public class Customer implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "customer")
-//    private List<Order> orders = new ArrayList<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "customer")
+    private List<Order> orders = new ArrayList<>();
 
     public Customer(){}
 
@@ -37,11 +37,6 @@ public class Customer implements Serializable {
         this.birthDate = birthDate;
         user.setRole(UserRole.CUSTOMER);
     }
-
-//    public Customer(Long id, LocalDate birthDate) {
-//        this.id = id;
-//        this.birthDate = birthDate;
-//    }
 
     public Long getId() {
         return id;
@@ -67,7 +62,7 @@ public class Customer implements Serializable {
         this.user = user;
     }
 
-//    public List<Order> getOrders() {
-//        return orders;
-//    }
+    public List<Order> getOrders() {
+        return orders;
+    }
 }
