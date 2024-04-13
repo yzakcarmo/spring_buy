@@ -12,6 +12,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "tb_user")
 public class User implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,8 +23,8 @@ public class User implements Serializable {
     private Integer role;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "client")
-    private List<Order> orders = new ArrayList<>();
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Customer customer;
 
     public User(){}
 
@@ -41,10 +42,6 @@ public class User implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public List<Order> getOrders() {
-        return orders;
     }
 
     public String getName() {
@@ -83,8 +80,16 @@ public class User implements Serializable {
         return UserRole.valueOf(role);
     }
 
-    public void setRole(Integer role) {
-        this.role = role;
+    public void setRole(UserRole role) {
+        this.role = role.getCode();
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     @Override

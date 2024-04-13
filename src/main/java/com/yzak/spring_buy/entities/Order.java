@@ -23,9 +23,9 @@ public class Order implements Serializable {
 
     private Integer orderStatus;
 
-    @ManyToOne
-    @JoinColumn(name = "client_id")
-    private User client;
+//    @ManyToOne
+//    @JoinColumn(name = "customer_id")
+//    private Customer customer;
 
     @OneToMany(mappedBy = "id.order")
     private Set<OrderItem> items = new HashSet<>();
@@ -35,11 +35,17 @@ public class Order implements Serializable {
 
     public Order(){}
 
-    public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
+//    public Order(Long id, Instant moment, OrderStatus orderStatus, Customer customer) {
+//        this.id = id;
+//        this.moment = moment;
+//        setOrderStatus(orderStatus);
+//        this.customer = customer;
+//    }
+
+    public Order(Long id, Instant moment, OrderStatus orderStatus) {
         this.id = id;
         this.moment = moment;
         setOrderStatus(orderStatus);
-        this.client = client;
     }
 
     public Long getId() {
@@ -66,13 +72,13 @@ public class Order implements Serializable {
         this.orderStatus = orderStatus.getCode();
     }
 
-    public User getClient() {
-        return client;
-    }
-
-    public void setClient(User client) {
-        this.client = client;
-    }
+//    public Customer getCustomer() {
+//        return customer;
+//    }
+//
+//    public void setCustomer(Customer customer) {
+//        this.customer = customer;
+//    }
 
     public Set<OrderItem> getItems() {
         return items;

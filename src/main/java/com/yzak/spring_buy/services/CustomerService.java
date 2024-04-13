@@ -57,5 +57,6 @@ public class CustomerService {
         entity.getUser().setName(obj.getUser().getName());
         entity.getUser().setEmail(obj.getUser().getEmail());
         entity.getUser().setPhone(obj.getUser().getPhone());
+        entity.setBirthDate(obj.getBirthDate());
     }
 }
