@@ -68,6 +68,7 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
