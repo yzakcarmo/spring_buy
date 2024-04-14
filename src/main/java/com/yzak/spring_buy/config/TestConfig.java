@@ -2,6 +2,7 @@ package com.yzak.spring_buy.config;
 
 import com.yzak.spring_buy.entities.*;
 import com.yzak.spring_buy.entities.enums.OrderStatus;
+import com.yzak.spring_buy.entities.enums.UserRole;
 import com.yzak.spring_buy.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -59,8 +60,8 @@ public class TestConfig implements CommandLineRunner {
         productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 
 
-        User u1 = new User(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");
-        User u2 = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
+        User u1 = new User(null, "Maria Brown", "maria@gmail.com", "988888888", "123456", UserRole.CUSTOMER);
+        User u2 = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456", UserRole.CUSTOMER);
         userRepository.saveAll(Arrays.asList(u1,u2));
 
         Customer c1 = new Customer(null, u1, LocalDate.parse("1998-08-20"));

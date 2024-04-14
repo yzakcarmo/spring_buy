@@ -5,23 +5,19 @@
 
 * Customer
 
-* Delivery
-
-* Market
-
-* Support
-
 * Order
 
 * Product
 
 * OrderItem
 
+* Payment
+
 * Address
 
-* Card
+* Delivery
 
-* Vehicle
+* Market
 
 ## Ações a fazer
 
@@ -31,7 +27,6 @@
    - Administrador(Gerencial)
    - Funcionarios(Geral)
    - Cliente
-   - Shopper
    - Entregador
    - Suporte
    - Supermercado

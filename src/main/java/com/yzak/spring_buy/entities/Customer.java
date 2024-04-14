@@ -2,7 +2,6 @@ package com.yzak.spring_buy.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.yzak.spring_buy.entities.enums.UserRole;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -35,7 +34,6 @@ public class Customer implements Serializable {
         this.id = id;
         this.user = user;
         this.birthDate = birthDate;
-        user.setRole(UserRole.CUSTOMER);
     }
 
     public Long getId() {
