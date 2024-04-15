@@ -70,10 +70,6 @@ public class Order implements Serializable {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
     public Set<OrderItem> getItems() {
         return items;
     }

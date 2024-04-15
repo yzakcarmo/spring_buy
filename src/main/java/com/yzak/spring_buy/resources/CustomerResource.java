@@ -33,15 +33,14 @@ public class CustomerResource {
     public ResponseEntity<Customer> insert(@RequestBody Customer obj) {
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(obj.getUser().getId()).toUri();
+                .buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Customer> delete(@PathVariable Long id) {
-        Customer obj = service.findById(id);
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.remove(id);
-        return ResponseEntity.ok().body(obj);
+        return ResponseEntity.noContent().build();
     }
 
     @PatchMapping(value = "/{id}")
