@@ -21,19 +21,17 @@ public class Address implements Serializable {
     private String city;
     private String state;
 
-    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "market_id")
     private Market market;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
     public Address(){}
 
-    public Address(Long id, Market market, Integer postalCode, String street, Integer number, String complement, String district, String city, String state) {
+    public Address(Long id, Customer customer, Market market, Integer postalCode, String street, Integer number, String complement, String district, String city, String state ) {
         this.postalCode = postalCode;
         this.street = street;
         this.number = number;
@@ -42,16 +40,6 @@ public class Address implements Serializable {
         this.city = city;
         this.state = state;
         this.market = market;
-    }
-
-    public Address(Long id, Customer customer, Integer postalCode, String street, Integer number, String complement, String district, String city, String state ) {
-        this.postalCode = postalCode;
-        this.street = street;
-        this.number = number;
-        this.complement = complement;
-        this.district = district;
-        this.city = city;
-        this.state = state;
         this.customer = customer;
     }
 
@@ -123,8 +111,16 @@ public class Address implements Serializable {
         return customer;
     }
 
+    public void setMarket(Market market) {
+        this.market = market;
+    }
+
     public Market getMarket() {
         return market;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     @Override

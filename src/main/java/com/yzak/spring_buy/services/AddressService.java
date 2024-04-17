@@ -4,6 +4,7 @@ import com.yzak.spring_buy.entities.Address;
 import com.yzak.spring_buy.entities.Customer;
 import com.yzak.spring_buy.entities.Market;
 import com.yzak.spring_buy.repositories.AddressRepository;
+import com.yzak.spring_buy.repositories.CustomerRepository;
 import com.yzak.spring_buy.repositories.MarketRepository;
 import com.yzak.spring_buy.services.exceptions.DatabaseException;
 import com.yzak.spring_buy.services.exceptions.ResourceNotFoundException;
@@ -34,20 +35,6 @@ public class AddressService {
     }
 
     public Address insert(Address obj) {
-        return repository.save(obj);
-    }
-
-    public Address insertCustomer(Long id, Address obj) {
-        Customer entity = customerService.findById(id);
-        obj = insert(obj);
-        entity.getAddresses().add(obj);
-        return repository.save(obj);
-    }
-
-    public Address insertMarket(Long id, Address obj) {
-        Market entity = marketService.findById(id);
-        obj = insert(obj);
-        entity.setAddress(obj);
         return repository.save(obj);
     }
 

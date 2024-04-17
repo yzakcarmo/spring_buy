@@ -1,5 +1,7 @@
 package com.yzak.spring_buy.services;
 
+import com.yzak.spring_buy.entities.Address;
+import com.yzak.spring_buy.entities.Customer;
 import com.yzak.spring_buy.entities.Market;
 import com.yzak.spring_buy.entities.Market;
 import com.yzak.spring_buy.repositories.MarketRepository;
@@ -29,6 +31,16 @@ public class MarketService {
 
     public Market insert(Market obj) {
         return repository.save(obj);
+    }
+
+    public void insertAddress(Long id, Address obj) {
+        try {
+            Market entity = repository.getReferenceById(id);
+            entity.setAddress(obj);
+            repository.save(entity);
+        } catch(EntityNotFoundException e) {
+            throw new ResourceNotFoundException(id);
+        }
     }
 
     public void remove(Long id) {

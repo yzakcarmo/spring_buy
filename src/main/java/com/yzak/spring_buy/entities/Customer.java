@@ -30,6 +30,7 @@ public class Customer implements Serializable {
     @OneToMany(mappedBy = "customer")
     private List<Order> orders = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "customer")
     private Set<Address> addresses = new HashSet<>();
 

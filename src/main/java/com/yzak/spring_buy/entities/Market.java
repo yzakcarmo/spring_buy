@@ -14,7 +14,6 @@ public class Market implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -37,6 +36,7 @@ public class Market implements Serializable{
         this.id = id;
     }
 
+    @JsonIgnore
     public Address getAddress() {
         return address;
     }

@@ -69,28 +69,29 @@ public class TestConfig implements CommandLineRunner {
         User u1 = new User(null, "Maria Brown", "maria@gmail.com", "988888888", "123456", UserRole.CUSTOMER);
         User u2 = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456", UserRole.CUSTOMER);
         User u3 = new User(null, "Assai", "assai@market.com", "34322856474", "45361712",UserRole.MARKET);
-        userRepository.saveAll(Arrays.asList(u1,u2,u3));
+        User u4 = new User(null, "Bretas", "bretas@market.com", "34322856474", "45361712",UserRole.MARKET);
+        userRepository.saveAll(Arrays.asList(u1,u2,u3,u4));
 
         Customer c1 = new Customer(null, u1, LocalDate.parse("1998-08-20"));
         Customer c2 = new Customer(null, u2, LocalDate.parse("1997-08-20"));
         customerRepository.saveAll(Arrays.asList(c1,c2));
 
         Market m1 = new Market(null, u3);
-        marketRepository.save(m1);
+        Market m2 = new Market(null, u4);
+        marketRepository.saveAll(Arrays.asList(m1,m2));
 
         u1.setCustomer(c1);
         u2.setCustomer(c2);
         u3.setMarket(m1);
         userRepository.saveAll(Arrays.asList(u1, u2,u3));
 
-        Address a1 = new Address(null,m1,38400, "rua", 1, "Casa", "Bairro", "testelandia", "Testestate");
-        Address a2 = new Address(null, c1, 38400, "Testestreet", 1, "Casa", "Bairro", "testelandia", "Testestate");
+        Address a1 = new Address(null, c1, null, 38400, "Testestreet", 1, "Casa", "Bairro", "testelandia", "Testestate");
+        Address a2 = new Address(null, null, m1, 38400, "Testestreet", 1, "Casa", "Bairro", "testelandia", "Testestate");
         addressRepository.saveAll(Arrays.asList(a1,a2));
 
-        c1.getAddresses().add(a2);
+        c1.getAddresses().add(a1);
         customerRepository.save(c1);
-
-        m1.setAddress(a1);
+        m1.setAddress(a2);
         marketRepository.save(m1);
 
         Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID, c1);

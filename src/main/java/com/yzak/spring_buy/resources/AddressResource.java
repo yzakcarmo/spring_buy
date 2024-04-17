@@ -2,6 +2,7 @@ package com.yzak.spring_buy.resources;
 
 import com.yzak.spring_buy.entities.Address;
 import com.yzak.spring_buy.entities.Address;
+import com.yzak.spring_buy.entities.Customer;
 import com.yzak.spring_buy.services.AddressService;
 import com.yzak.spring_buy.services.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +20,21 @@ public class AddressResource {
     @Autowired
     private AddressService service;
 
+    @GetMapping
+    public ResponseEntity<List<Address>> findAll() {
+        List<Address> list = service.findAll();
+        return ResponseEntity.ok().body(list);
+    }
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<Address> findById(@PathVariable Long id) {
         Address obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
 
-    @PostMapping(value = "/customer/{id}")
-    public ResponseEntity<Address> insertCustomer(@PathVariable Long id, @RequestBody Address obj) {
-        obj = service.insertCustomer(id, obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).body(obj);
-    }
-
-    @PostMapping(value = "/market/{id}")
-    public ResponseEntity<Address> insertMarket(@PathVariable Long id, @RequestBody Address obj) {
-        obj = service.insertMarket(id, obj);
+    @PostMapping
+    public ResponseEntity<Address> insert(@RequestBody Address obj) {
+        obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);

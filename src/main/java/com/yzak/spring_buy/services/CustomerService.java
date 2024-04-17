@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class CustomerService {
@@ -32,6 +33,21 @@ public class CustomerService {
 
     public Customer insert(Customer obj) {
         return repository.save(obj);
+    }
+
+    public void insertAddress(Long id, Address obj) {
+        try {
+            Customer entity = repository.getReferenceById(id);
+            entity.getAddresses().add(obj);
+            repository.save(entity);
+        } catch(EntityNotFoundException e) {
+            throw new ResourceNotFoundException(id);
+        }
+    }
+
+    public List<Address> listAddresses(Long id) {
+        Customer entity = repository.getReferenceById(id);
+        return entity.getAddresses().stream().toList();
     }
 
     public void remove(Long id) {

@@ -19,12 +19,15 @@ public class CustomerResource {
     @Autowired
     private CustomerService service;
 
-    @Autowired
-    private AddressService addressService;
-
     @GetMapping
     public ResponseEntity<List<Customer>> findAll() {
         List<Customer> list = service.findAll();
+        return ResponseEntity.ok().body(list);
+    }
+
+    @GetMapping(value = "/{id}/addresses")
+    public ResponseEntity<List<Address>> findAll(@PathVariable Long id) {
+        List<Address> list = service.listAddresses(id);
         return ResponseEntity.ok().body(list);
     }
 
