@@ -1,9 +1,8 @@
 package com.yzak.spring_buy.resources;
 
-import com.yzak.spring_buy.entities.Address;
-import com.yzak.spring_buy.entities.Customer;
+import com.yzak.spring_buy.entities.Market;
 import com.yzak.spring_buy.services.AddressService;
-import com.yzak.spring_buy.services.CustomerService;
+import com.yzak.spring_buy.services.MarketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,29 +12,26 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/customers")
-public class CustomerResource {
+@RequestMapping(value = "/markets")
+public class MarketResource {
 
     @Autowired
-    private CustomerService service;
-
-    @Autowired
-    private AddressService addressService;
+    private MarketService service;
 
     @GetMapping
-    public ResponseEntity<List<Customer>> findAll() {
-        List<Customer> list = service.findAll();
+    public ResponseEntity<List<Market>> findAll() {
+        List<Market> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Customer> findById(@PathVariable Long id) {
-        Customer obj = service.findById(id);
+    public ResponseEntity<Market> findById(@PathVariable Long id) {
+        Market obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
 
     @PostMapping
-    public ResponseEntity<Customer> insert(@RequestBody Customer obj) {
+    public ResponseEntity<Market> insert(@RequestBody Market obj) {
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(obj.getId()).toUri();
@@ -49,7 +45,7 @@ public class CustomerResource {
     }
 
     @PatchMapping(value = "/{id}")
-    public ResponseEntity<Customer> update(@PathVariable Long id, @RequestBody Customer obj) {
+    public ResponseEntity<Market> update(@PathVariable Long id, @RequestBody Market obj) {
         obj = service.update(id, obj);
         return ResponseEntity.ok().body(obj);
     }

@@ -83,7 +83,7 @@ public class TestConfig implements CommandLineRunner {
         u3.setMarket(m1);
         userRepository.saveAll(Arrays.asList(u1, u2,u3));
 
-        Address a1 = new Address(null, m1, 38400, "Testestreet", 1, "Casa", "Bairro", "testelandia", "Testestate");
+        Address a1 = new Address(null,m1,38400, "rua", 1, "Casa", "Bairro", "testelandia", "Testestate");
         Address a2 = new Address(null, c1, 38400, "Testestreet", 1, "Casa", "Bairro", "testelandia", "Testestate");
         addressRepository.saveAll(Arrays.asList(a1,a2));
 

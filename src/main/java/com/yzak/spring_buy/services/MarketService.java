@@ -1,9 +1,8 @@
 package com.yzak.spring_buy.services;
 
-import com.yzak.spring_buy.entities.Address;
-import com.yzak.spring_buy.entities.Customer;
-import com.yzak.spring_buy.repositories.AddressRepository;
-import com.yzak.spring_buy.repositories.CustomerRepository;
+import com.yzak.spring_buy.entities.Market;
+import com.yzak.spring_buy.entities.Market;
+import com.yzak.spring_buy.repositories.MarketRepository;
 import com.yzak.spring_buy.services.exceptions.DatabaseException;
 import com.yzak.spring_buy.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
@@ -16,21 +15,19 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CustomerService {
+public class MarketService {
 
     @Autowired
-    private CustomerRepository repository;
+    private MarketRepository repository;
 
-    public List<Customer> findAll() {
-        return repository.findAll();
-    }
+    public List<Market> findAll() { return repository.findAll(); }
 
-    public Customer findById(Long id) {
-        Optional<Customer> obj = repository.findById(id);
+    public Market findById(Long id) {
+        Optional<Market> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
-    public Customer insert(Customer obj) {
+    public Market insert(Market obj) {
         return repository.save(obj);
     }
 
@@ -44,9 +41,9 @@ public class CustomerService {
         }
     }
 
-    public Customer update(Long id, Customer obj) {
+    public Market update(Long id, Market obj) {
         try {
-            Customer entity = repository.getReferenceById(id);
+            Market entity = repository.getReferenceById(id);
             updateData(entity, obj);
             return repository.save(entity);
         } catch(EntityNotFoundException e) {
@@ -55,8 +52,8 @@ public class CustomerService {
 
     }
 
-    public void updateData(Customer entity, Customer obj) {
+    public void updateData(Market entity, Market obj) {
         entity.setUser(obj.getUser());
-       entity.setBirthDate(obj.getBirthDate());
+        entity.setAddress(obj.getAddress());
     }
 }
