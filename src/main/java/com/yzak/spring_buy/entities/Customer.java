@@ -7,7 +7,9 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_customer")
@@ -27,6 +29,9 @@ public class Customer implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "customer")
     private List<Order> orders = new ArrayList<>();
+
+    @OneToMany(mappedBy = "customer")
+    private Set<Address> addresses = new HashSet<>();
 
     public Customer(){}
 
@@ -62,5 +67,9 @@ public class Customer implements Serializable {
 
     public List<Order> getOrders() {
         return orders;
+    }
+
+    public Set<Address> getAddresses() {
+        return addresses;
     }
 }

@@ -26,6 +26,10 @@ public class User implements Serializable {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Customer customer;
 
+    @JsonIgnore
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Market market;
+
     public User(){}
 
     public User(Long id, String name, String email, String phone, String password, UserRole role) {
@@ -92,6 +96,14 @@ public class User implements Serializable {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public Market getMarket() {
+        return market;
+    }
+
+    public void setMarket(Market market) {
+        this.market = market;
     }
 
     @Override
