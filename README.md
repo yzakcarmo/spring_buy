@@ -1,6 +1,25 @@
-# Projeto pessoal de gerenciador de pedidos
+# Spring Buy 
 
-# Inicializando o container
+Esse é o projeto pessoal de um gerenciador de pedidos que pensei a alguns anos e tenho construido aos poucos.
+
+## 🛠 Tecnologias Utilizadas
+
+- **Java 17**
+- **Spring Boot 3**
+- **Spring Data JPA**
+- **PostgreSQL (via Docker)**
+- **Docker**
+
+## 🚀 Como Rodar o Projeto
+
+### 🔹 Pré-requisitos
+
+- Ter o **Java 17** ou superior instalado
+- Ter o **Docker** instalado
+
+### 🔹 Subindo o Banco de Dados com Docker
+
+Antes de iniciar a aplicação, suba o banco de dados com o comando:
 
 ```
 docker-compose up -d
@@ -24,15 +43,3 @@ docker-compose up -d
 * Delivery
 
 * Market
-
-## Ações a fazer
-
-1) Criar as entities
-2) Criar os services basicos
-3) Implementação de tipos de acesso
-   - Administrador(Gerencial)
-   - Funcionarios(Geral)
-   - Cliente
-   - Entregador
-   - Suporte
-   - Supermercado
