@@ -1,4 +1,10 @@
-# My personal Spring project
+# Projeto pessoal de gerenciador de pedidos
+
+# Inicializando o container
+
+```
+docker-compose up -d
+```
 
 ## Entities
 * User
